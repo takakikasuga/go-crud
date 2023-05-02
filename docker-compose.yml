@@ -1,0 +1,17 @@
+version: '3.9' # v1.27.0 からはオプション
+services:
+  db:
+    container_name: mysql
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - 3306:3306
+    env_file:
+      - ./.env_mysql_development
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql: # 呼び出し時に同じボリュームを使用する。
